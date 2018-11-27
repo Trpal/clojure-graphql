@@ -2,7 +2,7 @@
  {:BoardGame
   {:description "A physical or virtual board game."
    :fields
-   {:game_id {:type (non-null Int)}
+   {:game_id {:type (non-null ID)}
     :name {:type (non-null String)}
     :rating_summary {:type (non-null :GameRatingSummary)
                      :description "Summary of ratings given to the game."
@@ -32,8 +32,8 @@
   :Member
   {:description "A member of clojure game geek. Members can rate games"
    :fields
-   {:member_id {:type (non-null Int)}
-    :name {:type (non-null String)
+   {:member_id {:type (non-null ID)}
+    :member_name {:type (non-null String)
                   :description "Unique name of member."}
     :ratings {:type (list :GameRating)
               :description "List of games and ratings provided by this member."
@@ -51,7 +51,7 @@
   :Designer
   {:description "A person who may have contributed to a board game design."
    :fields
-   {:designer_id {:type (non-null Int)}
+   {:designer_id {:type (non-null ID)}
     :name {:type (non-null String)}
     :url {:type String
           :description "Home page URL, if known."}
@@ -71,7 +71,7 @@
   {:type :Member
    :description "Select a ClojureGameGeek Member by their unique id, if it exists."
    :args
-   {:id {:type (non-null Int)}}
+   {:id {:type (non-null ID)}}
    :resolve :query/member-by-id}}
 
  :mutations
@@ -81,8 +81,8 @@
    On success (the game and member both exist), selects the BoardGame.
    Otherwise, selects nil and an error."
    :args
-   {:game_id {:type (non-null Int)}
-    :member_id {:type (non-null Int)}
+   {:game_id {:type (non-null ID)}
+    :member_id {:type (non-null ID)}
     :rating {:type (non-null Int)
              :description "Game rating as a number between 1 and 5."}}
    :resolve :mutation/rate-game}}}
