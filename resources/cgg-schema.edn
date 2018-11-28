@@ -2,7 +2,7 @@
  {:BoardGame
   {:description "A physical or virtual board game."
    :fields
-   {:game_id {:type (non-null ID)}
+   {:id {:type (non-null ID)}
     :name {:type (non-null String)}
     :rating_summary {:type (non-null :GameRatingSummary)
                      :description "Summary of ratings given to the game."
@@ -32,7 +32,7 @@
   :Member
   {:description "A member of clojure game geek. Members can rate games"
    :fields
-   {:member_id {:type (non-null ID)}
+   {:id {:type (non-null ID)}
     :member_name {:type (non-null String)
                   :description "Unique name of member."}
     :ratings {:type (list :GameRating)
@@ -51,7 +51,7 @@
   :Designer
   {:description "A person who may have contributed to a board game design."
    :fields
-   {:designer_id {:type (non-null ID)}
+   {:id {:type (non-null ID)}
     :name {:type (non-null String)}
     :url {:type String
           :description "Home page URL, if known."}
@@ -64,7 +64,7 @@
   {:type :BoardGame
    :description "Access a BoardGame by its unique id, if it exists."
    :args
-   {:id {:type Int}}
+   {:id {:type (non-null ID)}}
    :resolve :query/game-by-id}
 
   :member_by_id
